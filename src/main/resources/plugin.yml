@@ -2,6 +2,8 @@ name: BlockReplacer
 version: '${version}'
 main: io.defineoutside.blockreplacer.BlockReplacer
 api-version: 1.19
+depend:
+    - WorldEdit
 commands:
     /replacetype:
         description: BlockReplacer command
