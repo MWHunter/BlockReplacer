@@ -1,0 +1,11 @@
+name: BlockReplacer
+version: '${version}'
+main: io.defineoutside.blockreplacer.BlockReplacer
+api-version: 1.19
+commands:
+    /replacetype:
+        description: BlockReplacer command
+        usage: //replacetype <block> <block>
+        permission: blockreplacer.use
+        permission-message: You do not have permission to use this command!
+        default: op
