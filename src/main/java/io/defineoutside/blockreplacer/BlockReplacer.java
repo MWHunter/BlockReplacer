@@ -66,21 +66,30 @@ public final class BlockReplacer extends JavaPlugin implements CommandExecutor {
             Material typeOne = null;
             Material typeTwo = null;
 
+            boolean oneValid = false;
+            boolean twoValid = false;
+
             for (Material mat : tag.getValues()) {
-                if (mat.isBlock() && mat.name().contains(argOne)) {
+                if (!mat.isBlock()) continue;
+                if (mat.name().contains(argOne)) {
                     if (typeOne == null || typeOne.name().length() > mat.name().length()) {
                         typeOne = mat;
                     }
+                } else {
+                    oneValid = true;
                 }
-                if (mat.isBlock() && mat.name().contains(argTwo)) {
+
+                if (mat.name().contains(argTwo)) {
                     if (typeTwo == null || typeTwo.name().length() > mat.name().length()) {
                         typeTwo = mat;
                     }
+                } else {
+                    twoValid = true;
                 }
             }
 
 
-            if (typeOne != null && typeTwo != null) {
+            if (typeOne != null && typeTwo != null && oneValid && twoValid) {
                 BlockTypeMask typeMask = new BlockTypeMask(selectionWorld, BukkitAdapter.asBlockType(typeOne));
 
                 BlockState twoType = BukkitAdapter.asBlockType(typeTwo).getDefaultState();
